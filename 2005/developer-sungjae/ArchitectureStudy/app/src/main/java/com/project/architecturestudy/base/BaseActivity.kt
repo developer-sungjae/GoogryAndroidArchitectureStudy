@@ -16,6 +16,11 @@ abstract class BaseActivity<B : ViewDataBinding, VM : BaseViewModel>(@LayoutRes 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutResId)
+        binding.lifecycleOwner = this
+    }
+
+    protected fun bind(action: B.() -> Unit) {
+        binding.run(action)
     }
 
 }

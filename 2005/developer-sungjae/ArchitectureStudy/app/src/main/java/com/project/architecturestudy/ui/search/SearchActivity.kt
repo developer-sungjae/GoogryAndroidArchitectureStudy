@@ -11,16 +11,18 @@ import com.project.data.model.MovieItem
 import org.jetbrains.anko.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class SearchActivity : BaseActivity<ActivitySearchBinding, SearchViewModel>(R.layout.activity_search) {
+class SearchActivity :
+    BaseActivity<ActivitySearchBinding, SearchViewModel>(R.layout.activity_search) {
 
     override val vm: SearchViewModel by viewModel()
     private val adapter = SearchAdapter<MovieItemBinding, MovieItem>(R.layout.movie_item)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.vm = vm
-        binding.lifecycleOwner = this
-        setRecyclerView()
+        bind {
+            vm = this@SearchActivity.vm
+            listviewMovie.adapter = adapter
+        }
 
         vm.searchWord.observe(this, Observer {
             vm.invokeTextChanged()
@@ -30,9 +32,5 @@ class SearchActivity : BaseActivity<ActivitySearchBinding, SearchViewModel>(R.la
             Log.d("observer", it)
             toast(it)
         })
-    }
-
-    private fun setRecyclerView() {
-        binding.listviewMovie.adapter = adapter
     }
 }
