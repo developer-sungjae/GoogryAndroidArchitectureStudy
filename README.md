@@ -1,4 +1,4 @@
-# AndroidArchitecture Study
+# Android Architecture Study
 
 ## chuuuul의 프로젝트
 [/2005/chuuuul/](https://github.com/chuuuul/GoogryAndroidArchitectureStudy/tree/2005/chuuuul-HW-8(Multi-Module)/2005/chuuuul)
